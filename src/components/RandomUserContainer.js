@@ -7,7 +7,7 @@ import Button from "./Button";
 
 class RandomUserContainer extends Component {
     state = {
-        
+
         result: [],
         //picture: obj.picture.thumbnail,
         // firstName: obj.name.first,
@@ -20,8 +20,8 @@ class RandomUserContainer extends Component {
     // When this component mounts, search for the movie "The Matrix"
     componentDidMount() {
         this.RenderEmployees();
-        
-        
+
+
     }
 
     RenderEmployees = () => {
@@ -39,39 +39,34 @@ class RandomUserContainer extends Component {
                     }
                     return rObj
                 })
-                this.setState({result: myResults})
+                this.setState({ result: myResults })
             })
             .catch(err => console.log(err));
     };
 
     sortEmployees = () => {
-
+        // sort by name
+        this.setState(
+        this.state.result.sort((a, b) => a.firstName > b.firstName ? 1:-1));
+        console.log(this.state.result);
+        
     }
-    //   handleInputChange = event => {
-    //     const value = event.target.value;
-    //     const name = event.target.name;
-    //     this.setState({
-    //       [name]: value
-    //     });
-    //   };
 
-    //   // When the form is submitted, search the OMDB API for the value of `this.state.search`
-    //   handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     this.searchMovies(this.state.search);
-    //   };
+    
 
     render() {
-        return (
+            return(
             <Container>
                 <Jumbotron jumbo="jumbotron">
                     <h1>Employee Directory</h1>
                 </Jumbotron>
-                <Button />
+                {/* <Button />
+                */}
+                <button className="btn btn-danger" onClick={this.sortEmployees}>Sort by Name</button>
                 <Table data={this.state.result}>
                     
                 </Table>
-            </Container>
+            </Container >
         );
     }
 }

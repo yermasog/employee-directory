@@ -2,7 +2,7 @@ import React from "react";
 
 
 function Table(props) {
-    console.log(props.data);
+    // console.log(props.data);
     return (
         <table>
             <tr>
