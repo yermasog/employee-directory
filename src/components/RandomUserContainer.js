@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import Jumbotron from "./Jumbotron";
 import Container from "./Container";
 import Table from "./Table"
-// import Column from "./Column";
-// import Row from "./Row";
 import API from "../utils/API";
+import Button from "./Button";
 
 class RandomUserContainer extends Component {
     state = {
@@ -31,11 +30,12 @@ class RandomUserContainer extends Component {
                 console.log(res.data.results);
                 let myResults = res.data.results.map(obj => {
                     let rObj = {
-                        picture: obj.picture.thumbnail,
+                        picture: obj.picture.large,
                         firstName: obj.name.first,
                         lastName: obj.name.last,
                         email: obj.email,
-                        phone: obj.cell
+                        phone: obj.cell,
+                        gender: obj.gender
                     }
                     return rObj
                 })
@@ -44,6 +44,9 @@ class RandomUserContainer extends Component {
             .catch(err => console.log(err));
     };
 
+    sortEmployees = () => {
+
+    }
     //   handleInputChange = event => {
     //     const value = event.target.value;
     //     const name = event.target.name;
@@ -64,6 +67,7 @@ class RandomUserContainer extends Component {
                 <Jumbotron jumbo="jumbotron">
                     <h1>Employee Directory</h1>
                 </Jumbotron>
+                <Button />
                 <Table data={this.state.result}>
                     
                 </Table>

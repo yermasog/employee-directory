@@ -14,7 +14,7 @@ function Table(props) {
             </tr>
             {props.data.map((employee) =>
             <tr>
-                <td>{employee.picture}</td>
+                <td><img src={employee.picture}></img></td>
                 <td>{employee.firstName}</td>
                 <td>{employee.lastName}</td>
                 <td>{employee.email}</td>
