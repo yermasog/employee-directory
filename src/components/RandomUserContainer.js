@@ -27,7 +27,7 @@ class RandomUserContainer extends Component {
     RenderEmployees = () => {
         API.search()
             .then(res => {
-                console.log(res.data.results);
+                // console.log(res.data.results);
                 let myResults = res.data.results.map(obj => {
                     let rObj = {
                         picture: obj.picture.large,
@@ -35,7 +35,8 @@ class RandomUserContainer extends Component {
                         lastName: obj.name.last,
                         email: obj.email,
                         phone: obj.cell,
-                        gender: obj.gender
+                        gender: obj.gender,
+                       
                     }
                     return rObj
                 })
@@ -47,15 +48,22 @@ class RandomUserContainer extends Component {
     sortEmployees = () => {
         // sort by name
         this.setState(
-        this.state.result.sort((a, b) => a.firstName > b.firstName ? 1:-1));
+            this.state.result.sort((a, b) => a.firstName > b.firstName ? 1 : -1));
         console.log(this.state.result);
-        
+
     }
 
-    
+    filterFemaleEmployees = () => {
+        
+         let femaleArr = this.state.result.filter(emp => emp.gender === "female")
+            console.log(this.state.result);
+            console.log(this.state.result.filter(emp => emp.gender === "female"));
+            this.setState({result: femaleArr})
+            console.log(femaleArr);
+    }
 
     render() {
-            return(
+        return (
             <Container>
                 <Jumbotron jumbo="jumbotron">
                     <h1>Employee Directory</h1>
@@ -63,8 +71,11 @@ class RandomUserContainer extends Component {
                 {/* <Button />
                 */}
                 <button className="btn btn-danger" onClick={this.sortEmployees}>Sort by Name</button>
+                <button className="btn btn-danger" onClick={this.filterFemaleEmployees}>Filter by Gender: Female</button>
+               
                 <Table data={this.state.result}>
-                    
+
+
                 </Table>
             </Container >
         );
