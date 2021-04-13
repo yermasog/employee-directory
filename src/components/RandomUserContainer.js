@@ -7,8 +7,10 @@ import Button from "./Button";
 
 class RandomUserContainer extends Component {
     state = {
-
+    
         result: [],
+        filterFemale: [],
+        filtered: true
         //picture: obj.picture.thumbnail,
         // firstName: obj.name.first,
         // lastName: obj.name.last,
@@ -57,9 +59,12 @@ class RandomUserContainer extends Component {
         
          let femaleArr = this.state.result.filter(emp => emp.gender === "female")
             console.log(this.state.result);
-            console.log(this.state.result.filter(emp => emp.gender === "female"));
             this.setState({result: femaleArr})
             console.log(femaleArr);
+    }
+
+    clearFilter =() => {
+
     }
 
     render() {
